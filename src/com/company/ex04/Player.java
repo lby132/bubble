@@ -1,7 +1,12 @@
-package com.company.ex03;
+package com.company.ex04;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 
+@Getter
+@Setter
 public class Player extends JLabel implements Moveable {
 
     // 위치 상태
@@ -42,30 +47,49 @@ public class Player extends JLabel implements Moveable {
 
     @Override
     public void left() {
-        setIcon(playerL);
-        x = x - 10;
-        setLocation(x, y);
+        left = true;
+        new Thread(() -> {
+            while (left) {
+                setIcon(playerL);
+                x = x - 1;
+                setLocation(x, y);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
     public void right() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        setIcon(playerR);
-        x = x + 10;
-        setLocation(x, y);
+        right = true;
+        new Thread(() -> {
+            while (right) {
+                setIcon(playerR);
+                x = x + 1;
+                setLocation(x, y);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override
     public void up() {
+        new Thread(() -> {
 
+        }).start();
     }
 
     @Override
     public void down() {
+        new Thread(() -> {
 
+        }).start();
     }
 }
