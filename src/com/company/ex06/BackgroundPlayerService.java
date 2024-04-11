@@ -1,6 +1,7 @@
 package com.company.ex06;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +11,10 @@ import java.io.IOException;
 public class BackgroundPlayerService implements Runnable {
 
     private BufferedImage image;
+    private Player player;
 
-    public BackgroundPlayerService(BufferedImage image) {
+    public BackgroundPlayerService(Player player) {
+        this.player = player;
         try {
             image = ImageIO.read(new File("image/test.png"));
         } catch (IOException e) {
@@ -21,6 +24,15 @@ public class BackgroundPlayerService implements Runnable {
 
     @Override
     public void run() {
+        while (true) {
+            Color leftColor = new Color(image.getRGB(player.getX() - 10, player.getY() + 25));
+            Color rightColor = new Color(image.getRGB(player.getX() + 50 + 10, player.getY() + 25));
 
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
