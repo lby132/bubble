@@ -1,4 +1,4 @@
-package com.company.ex05;
+package com.company.ex06;
 
 import lombok.Getter;
 import lombok.Setter;
