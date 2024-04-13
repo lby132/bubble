@@ -1,6 +1,8 @@
 package com.company.ex06;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,7 +18,7 @@ public class BackgroundPlayerService implements Runnable {
     public BackgroundPlayerService(Player player) {
         this.player = player;
         try {
-            image = ImageIO.read(new File("image/test.png"));
+            image = ImageIO.read((ImageInputStream) new ImageIcon("image/backgroundMapService.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -26,7 +28,7 @@ public class BackgroundPlayerService implements Runnable {
     public void run() {
         while (true) {
             Color leftColor = new Color(image.getRGB(player.getX() - 10, player.getY() + 25));
-            Color rightColor = new Color(image.getRGB(player.getX() + 50 + 10, player.getY() + 25));
+            Color rightColor = new Color(image.getRGB(player.getX() + 50 + 15, player.getY() + 25));
 
             try {
                 Thread.sleep(10);
