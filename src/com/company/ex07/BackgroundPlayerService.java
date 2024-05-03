@@ -18,7 +18,6 @@ public class BackgroundPlayerService implements Runnable {
     public BackgroundPlayerService(Player player) {
         this.player = player;
         try {
-//            image = ImageIO.read((ImageInputStream) new ImageIcon("image/backgroundMapService.png"));
             image = ImageIO.read(new File("res/backgroundMapService.png"));
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -33,10 +32,15 @@ public class BackgroundPlayerService implements Runnable {
 
             if (leftColor.getRed() == 255 && leftColor.getGreen() == 0 && leftColor.getBlue() == 0) {
                 System.out.println("왼쪽 벽에 출동함");
+                player.setLeftWallCrash(true);
                 player.setLeft(false);
             } else if (rightColor.getRed() == 255 && rightColor.getGreen() == 0 && rightColor.getBlue() == 0) {
                 System.out.println("오른쪽 벽에 출동함");
+                player.setRightWallCrash(true);
                 player.setRight(false);
+            } else {
+                player.setLeftWallCrash(false);
+                player.setRightWallCrash(false);
             }
 
             try {
