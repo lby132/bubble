@@ -1,4 +1,4 @@
-package com.company.ex06;
+package com.company.ex07;
 
 public interface Moveable {
     void left();

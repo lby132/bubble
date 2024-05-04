@@ -1,4 +1,4 @@
-package com.company.ex06;
+package com.company.ex07;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
@@ -21,9 +21,6 @@ public class BubbleFrame extends JFrame {
         setContentPane(backgroundMap);
         player = new Player();
         add(player);
-//        backgroundMap.setSize(1000, 600);
-//        backgroundMap.setLocation(300, 300);
-//        add(backgroundMap); // JFrame에 JLabel이 그려진다.
     }
 
     private void initSetting() {
@@ -41,10 +38,12 @@ public class BubbleFrame extends JFrame {
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_LEFT:
-                        player.left();
+                        if (!player.isLeft() && !player.isLeftWallCrash()) {
+                            player.left();
+                        }
                         break;
                     case KeyEvent.VK_RIGHT:
-                        if (!player.isRight()) {
+                        if (!player.isRight() && !player.isRightWallCrash()) {
                             player.isRight();
                         }
                         player.right();
